@@ -1,0 +1,18 @@
+{
+  "domain": "QmdevHA",
+  "name": "QmdevHA",
+  "documentation": "https://github.com/cpuwolf/QmdevHA",
+  "issue_tracker": "https://github.com/cpuwolf/QmdevHA/issues",
+  "version": "0.1.0",
+  "codeowners": ["@cpuwolf"],
+  "iot_class": "local_push",
+  "integration_type": "helper",
+  "requirements": [
+    "pyzmq>=25.1.0",
+    "python-dotenv>=1.0.1",
+    "requests>=2.31.0"
+  ],
+  "config_flow": true
+}
+
+

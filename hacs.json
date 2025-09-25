@@ -1,0 +1,10 @@
+{
+  "name": "QmdevHA",
+  "render_readme": true,
+  "country": ["CN"],
+  "domains": ["integration"],
+  "homeassistant": "2024.6.0",
+  "iot_class": "Local Push"
+}
+
+

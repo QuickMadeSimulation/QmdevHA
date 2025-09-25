@@ -1,18 +1,14 @@
 {
   "domain": "qmdevha",
-  "name": "QmdevHA",
-  "documentation": "https://github.com/QuickMadeSimulation/QmdevHA",
-  "issue_tracker": "https://github.com/QuickMadeSimulation/QmdevHA/issues",
-  "version": "0.1.0",
+  "name": "Qmdev HA",
   "codeowners": ["@cpuwolf"],
-  "iot_class": "local_push",
+  "config_flow": true,
+  "documentation": "https://github.com/QuickMadeSimulation/QmdevHA",
   "integration_type": "helper",
-  "requirements": [
-    "pyzmq>=25.1.0",
-    "python-dotenv>=1.0.1",
-    "requests>=2.31.0"
-  ],
-  "config_flow": true
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/QuickMadeSimulation/QmdevHA/issues",
+  "requirements": ["pyzmq>=25.1.0", "python-dotenv>=1.0.1", "requests>=2.31.0"],
+  "version": "0.1.0"
 }
 
 

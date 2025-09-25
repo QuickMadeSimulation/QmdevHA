@@ -1,8 +1,8 @@
 {
   "domain": "QmdevHA",
   "name": "QmdevHA",
-  "documentation": "https://github.com/cpuwolf/QmdevHA",
-  "issue_tracker": "https://github.com/cpuwolf/QmdevHA/issues",
+  "documentation": "https://github.com/QuickMadeSimulation/QmdevHA",
+  "issue_tracker": "https://github.com/QuickMadeSimulation/QmdevHA/issues",
   "version": "0.1.0",
   "codeowners": ["@cpuwolf"],
   "iot_class": "local_push",

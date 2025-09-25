@@ -23,4 +23,4 @@ jobs:
 
       - name: Unit test with pytest
         run: |
-          pytest -v -s -m github ./test/
+          pytest -v -s -m github ./tests/

@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-DOMAIN = "QmdevHA"
+DOMAIN = "qmdevha"
 
 CONF_LIGHT_ENTITY_ID = "light_entity_id"
 CONF_AC_ENTITY_ID = "ac_entity_id"

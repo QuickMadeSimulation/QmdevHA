@@ -46,7 +46,7 @@ class ZmqBridge:
             self._ctx = zmq.asyncio.Context()
         self._sock = self._ctx.socket(zmq.SUB)
         _LOGGER.debug("qmdevha open %s", self._zmq_sub_endpoint)
-        self._sock.connect(self._zmq_sub_endpoint)
+        self._sock.connect("tcp://" + self._zmq_sub_endpoint + ":63870")
         self._sock.setsockopt_string(zmq.SUBSCRIBE, "")
 
     async def _close_socket(self) -> None:
@@ -128,10 +128,10 @@ class ZmqBridge:
                         remaining = frames[0][8:]
                         payload = remaining[:payload_len] if len(remaining) >= payload_len else (remaining + b"".join(frames[1:]))[:payload_len]
                         if msg_id == ZMQQ_PACKEVENT_ID:
-                            _LOGGER.debug("qmdevha pack event")
+                            #_LOGGER.debug("qmdevha pack event")
                             await self._handle_pack_event(payload)
                         elif msg_id == ZMQQ_KEYEVENT_ID:
-                            _LOGGER.debug("qmdevha key event")
+                            #_LOGGER.debug("qmdevha key event")
                             await self._handle_key_event(payload)
                         else:
                             _LOGGER.debug("qmdevha unknown event")

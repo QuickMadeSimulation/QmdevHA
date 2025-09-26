@@ -15,7 +15,7 @@
 
 DOMAIN = "qmdevha"
 
-CONF_ZMQ_SUB_ENDPOINT = "qmdev IP address"
+CONF_ZMQ_SUB_ENDPOINT = "zmq_sub_endpoint"
 
 DEFAULT_TITLE = "QmdevHA"
 

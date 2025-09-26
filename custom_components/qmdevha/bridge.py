@@ -120,16 +120,22 @@ class ZmqBridge:
                         ZMQQ_KEYEVENT_ID = 0x07324D6E
                         ZMQQ_PACKEVENT_ID = 0x07324D6F
                         if msg_id == ZMQQHeartBeat_ID:
+                            _LOGGER.debug("qmdevha heart beat")
                             last_heartbeat = hass.loop.time()
                             continue
 
                         remaining = frames[0][8:]
                         payload = remaining[:payload_len] if len(remaining) >= payload_len else (remaining + b"".join(frames[1:]))[:payload_len]
                         if msg_id == ZMQQ_PACKEVENT_ID:
+                            _LOGGER.debug("qmdevha pack event")
                             await self._handle_pack_event(payload)
                         elif msg_id == ZMQQ_KEYEVENT_ID:
+                            _LOGGER.debug("qmdevha key event")
                             await self._handle_key_event(payload)
+                        else:
+                            _LOGGER.debug("qmdevha unknown event")
                 else:
+                    _LOGGER.debug("qmdevha timeout")
                     if hass.loop.time() - last_heartbeat > heartbeat_timeout:
                         await self._close_socket()
                         await asyncio.sleep(0.5)

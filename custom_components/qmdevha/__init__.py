@@ -15,6 +15,8 @@
 
 from __future__ import annotations
 
+import zmq
+import zmq.asyncio
 import asyncio
 import logging
 from typing import Any

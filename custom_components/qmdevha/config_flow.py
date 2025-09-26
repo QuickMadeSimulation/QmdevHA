@@ -30,11 +30,12 @@ class QmdevHAConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_step_user(self, user_input=None):  # type: ignore[override]
         if user_input is not None:
-            return self.async_create_entry(title=DEFAULT_TITLE, data=user_input)
+            header = DEFAULT_TITLE + ":" + user_input[CONF_ZMQ_SUB_ENDPOINT]
+            return self.async_create_entry(title=header, data=user_input)
 
         data_schema = vol.Schema(
             {
-                vol.Required(CONF_ZMQ_SUB_ENDPOINT): str,
+                vol.Required(CONF_ZMQ_SUB_ENDPOINT, default="192.168.1.1"): str,
             }
         )
         return self.async_show_form(step_id="user", data_schema=data_schema)

@@ -45,8 +45,10 @@ class ZmqBridge:
         if self._ctx is None:
             self._ctx = zmq.asyncio.Context()
         self._sock = self._ctx.socket(zmq.SUB)
-        _LOGGER.debug("qmdevha open %s", self._zmq_sub_endpoint)
-        self._sock.connect("tcp://" + self._zmq_sub_endpoint + ":63870")
+        url = "tcp://"
+        url = url + self._zmq_sub_endpoint + ":63870"
+        _LOGGER.debug("qmdevha open %s", url)
+        self._sock.connect(url)
         self._sock.setsockopt_string(zmq.SUBSCRIBE, "")
 
     async def _close_socket(self) -> None:

@@ -17,12 +17,9 @@ from __future__ import annotations
 
 import voluptuous as vol
 from homeassistant import config_entries
-from homeassistant.const import CONF_TOKEN, CONF_URL
 
 from .const import (
     DOMAIN,
-    CONF_LIGHT_ENTITY_ID,
-    CONF_AC_ENTITY_ID,
     CONF_ZMQ_SUB_ENDPOINT,
     DEFAULT_TITLE,
 )
@@ -37,10 +34,6 @@ class QmdevHAConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         data_schema = vol.Schema(
             {
-                vol.Required(CONF_URL): str,
-                vol.Required(CONF_TOKEN): str,
-                vol.Required(CONF_LIGHT_ENTITY_ID): str,
-                vol.Required(CONF_AC_ENTITY_ID): str,
                 vol.Required(CONF_ZMQ_SUB_ENDPOINT): str,
             }
         )

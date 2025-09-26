@@ -17,10 +17,6 @@ def mock_config_entry():
         domain=DOMAIN,
         title="QmdevHA",
         data={
-            "url": "http://localhost:8123",
-            "token": "test_token",
-            "light_entity_id": "light.test_light",
-            "ac_entity_id": "climate.test_ac",
             "zmq_sub_endpoint": "tcp://127.0.0.1:5556",
         },
         unique_id="qmdevha_test",
@@ -45,10 +41,6 @@ async def test_config_flow_success(hass: HomeAssistant) -> None:
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"],
         {
-            "url": "http://localhost:8123",
-            "token": "test_token",
-            "light_entity_id": "light.test_light",
-            "ac_entity_id": "climate.test_ac",
             "zmq_sub_endpoint": "tcp://127.0.0.1:5556",
         },
     )
@@ -56,10 +48,6 @@ async def test_config_flow_success(hass: HomeAssistant) -> None:
     assert result["type"] == FlowResultType.CREATE_ENTRY
     assert result["title"] == "QmdevHA"
     assert result["data"] == {
-        "url": "http://localhost:8123",
-        "token": "test_token",
-        "light_entity_id": "light.test_light",
-        "ac_entity_id": "climate.test_ac",
         "zmq_sub_endpoint": "tcp://127.0.0.1:5556",
     }
 
@@ -74,10 +62,6 @@ async def test_config_flow_validation_error(hass: HomeAssistant) -> None:
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"],
         {
-            "url": "",
-            "token": "",
-            "light_entity_id": "",
-            "ac_entity_id": "",
             "zmq_sub_endpoint": "",
         },
     )

@@ -21,12 +21,9 @@ from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.const import CONF_TOKEN, CONF_URL
 
 from .const import (
     DOMAIN,
-    CONF_LIGHT_ENTITY_ID,
-    CONF_AC_ENTITY_ID,
     CONF_ZMQ_SUB_ENDPOINT,
 )
 
@@ -43,10 +40,7 @@ async def _run_zmq_bridge_task(hass: HomeAssistant, entry: ConfigEntry) -> None:
     from .bridge import ZmqBridge
 
     bridge = ZmqBridge(
-        ha_base_url=entry.data[CONF_URL],
-        ha_token=entry.data[CONF_TOKEN],
-        light_entity_id=entry.data[CONF_LIGHT_ENTITY_ID],
-        ac_entity_id=entry.data[CONF_AC_ENTITY_ID],
+        hass=hass,
         zmq_sub_endpoint=entry.data[CONF_ZMQ_SUB_ENDPOINT],
     )
     try:

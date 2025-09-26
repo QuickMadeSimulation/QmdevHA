@@ -20,9 +20,9 @@ import logging
 import struct
 from typing import Any
 
-import aiohttp
 import zmq
 import zmq.asyncio
+from homeassistant.core import HomeAssistant
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -31,52 +31,15 @@ class ZmqBridge:
     def __init__(
         self,
         *,
-        ha_base_url: str,
-        ha_token: str,
-        light_entity_id: str,
-        ac_entity_id: str,
+        hass: HomeAssistant,
         zmq_sub_endpoint: str,
     ) -> None:
-        self._ha_base_url = ha_base_url.rstrip("/")
-        self._ha_token = ha_token
-        self._light_entity_id = light_entity_id
-        self._ac_entity_id = ac_entity_id
+        self._hass = hass
         self._zmq_sub_endpoint = zmq_sub_endpoint
 
-        self._aiohttp: aiohttp.ClientSession | None = None
         self._ctx: zmq.asyncio.Context | None = None
         self._sock: zmq.asyncio.Socket | None = None
 
-    async def _ensure_session(self) -> aiohttp.ClientSession:
-        if self._aiohttp is None or self._aiohttp.closed:
-            self._aiohttp = aiohttp.ClientSession(
-                headers={
-                    "Authorization": f"Bearer {self._ha_token}",
-                    "Content-Type": "application/json",
-                }
-            )
-        return self._aiohttp
-
-    async def _post(self, path: str, json: dict[str, Any]) -> None:
-        session = await self._ensure_session()
-        url = f"{self._ha_base_url}{path}"
-        async with session.post(url, json=json, timeout=10) as resp:
-            if resp.status >= 400:
-                text = await resp.text()
-                _LOGGER.error("HA API error %s: %s", resp.status, text)
-                raise RuntimeError(text)
-
-    async def _turn_on_light(self) -> None:
-        await self._post("/api/services/switch/turn_on", {"entity_id": self._light_entity_id})
-
-    async def _turn_off_light(self) -> None:
-        await self._post("/api/services/switch/turn_off", {"entity_id": self._light_entity_id})
-
-    async def _turn_on_ac(self) -> None:
-        await self._post("/api/services/climate/set_hvac_mode", {"entity_id": self._ac_entity_id, "hvac_mode": "cool"})
-
-    async def _turn_off_ac(self) -> None:
-        await self._post("/api/services/climate/set_hvac_mode", {"entity_id": self._ac_entity_id, "hvac_mode": "off"})
 
     async def _open_socket(self) -> None:
         if self._ctx is None:
@@ -94,6 +57,7 @@ class ZmqBridge:
             self._ctx = None
 
     async def _handle_pack_event(self, payload_bytes: bytes) -> None:
+        """处理打包事件并触发Home Assistant事件"""
         if len(payload_bytes) < 1:
             return
         try:
@@ -101,12 +65,19 @@ class ZmqBridge:
         except Exception:
             _LOGGER.debug("failed to unpack pack event")
             return
-        if onoff:
-            await self._turn_on_ac()
-        else:
-            await self._turn_off_ac()
+        
+        # 触发Home Assistant事件
+        self._hass.bus.async_fire(
+            "qmdevha_pack_event",
+            {
+                "onoff": onoff,
+                "timestamp": self._hass.loop.time()
+            }
+        )
+        _LOGGER.debug("Fired qmdevha_pack_event: onoff=%s", onoff)
 
     async def _handle_key_event(self, payload_bytes: bytes) -> None:
+        """处理按键事件并触发Home Assistant事件"""
         if len(payload_bytes) < 12:
             return
         try:
@@ -114,11 +85,18 @@ class ZmqBridge:
         except Exception:
             _LOGGER.debug("failed to unpack key event")
             return
-        if qid == 9 and key == 0x13:
-            if isrelease:
-                await self._turn_on_light()
-            else:
-                await self._turn_off_light()
+        
+        # 触发Home Assistant事件
+        self._hass.bus.async_fire(
+            "qmdevha_key_event",
+            {
+                "qid": qid,
+                "key": key,
+                "isrelease": bool(isrelease),
+                "timestamp": self._hass.loop.time()
+            }
+        )
+        _LOGGER.debug("Fired qmdevha_key_event: qid=%d, key=0x%x, isrelease=%s", qid, key, isrelease)
 
     async def run(self, hass) -> None:
         await self._open_socket()

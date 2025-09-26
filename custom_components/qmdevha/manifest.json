@@ -4,7 +4,7 @@
   "codeowners": ["@cpuwolf"],
   "config_flow": true,
   "documentation": "https://github.com/QuickMadeSimulation/QmdevHA",
-  "integration_type": "helper",
+  "integration_type": "hub",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/QuickMadeSimulation/QmdevHA/issues",
   "requirements": ["pyzmq>=25.1.0", "python-dotenv>=1.0.1", "requests>=2.31.0"],

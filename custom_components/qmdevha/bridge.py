@@ -45,6 +45,7 @@ class ZmqBridge:
         if self._ctx is None:
             self._ctx = zmq.asyncio.Context()
         self._sock = self._ctx.socket(zmq.SUB)
+        _LOGGER.debug("qmdevha open %s", self._zmq_sub_endpoint)
         self._sock.connect(self._zmq_sub_endpoint)
         self._sock.setsockopt_string(zmq.SUBSCRIBE, "")
 
@@ -134,6 +135,8 @@ class ZmqBridge:
                             await self._handle_key_event(payload)
                         else:
                             _LOGGER.debug("qmdevha unknown event")
+                    else:
+                        _LOGGER.debug("qmdevha message is too small")
                 else:
                     _LOGGER.debug("qmdevha timeout")
                     if hass.loop.time() - last_heartbeat > heartbeat_timeout:

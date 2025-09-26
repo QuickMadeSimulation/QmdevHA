@@ -121,7 +121,7 @@ class ZmqBridge:
                         ZMQQ_KEYEVENT_ID = 0x07324D6E
                         ZMQQ_PACKEVENT_ID = 0x07324D6F
                         if msg_id == ZMQQHeartBeat_ID:
-                            _LOGGER.debug("qmdevha heart beat")
+                            #_LOGGER.debug("qmdevha heart beat")
                             last_heartbeat = hass.loop.time()
                             continue
 
@@ -138,7 +138,7 @@ class ZmqBridge:
                     else:
                         _LOGGER.debug("qmdevha message is too small")
                 else:
-                    _LOGGER.debug("qmdevha timeout")
+                    #_LOGGER.debug("qmdevha timeout")
                     if hass.loop.time() - last_heartbeat > heartbeat_timeout:
                         await self._close_socket()
                         await asyncio.sleep(0.5)

@@ -61,10 +61,10 @@ class ZmqBridge:
 
     async def _handle_pack_event(self, payload_bytes: bytes) -> None:
         """处理打包事件并触发Home Assistant事件"""
-        if len(payload_bytes) < 1:
+        if len(payload_bytes) < 8:
             return
         try:
-            onoff = struct.unpack("?", payload_bytes[:1])[0]
+            onoff, tempdegree = struct.unpack("<ii", payload_bytes[:8])
         except Exception:
             _LOGGER.debug("failed to unpack pack event")
             return
@@ -74,6 +74,7 @@ class ZmqBridge:
             "qmdevha_pack_event",
             {
                 "onoff": onoff,
+                "dregree": tempdegree,
                 "timestamp": self._hass.loop.time()
             }
         )

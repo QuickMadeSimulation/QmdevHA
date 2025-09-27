@@ -79,7 +79,7 @@ class ZmqBridge:
             "qmdevha_pack_event",
             {
                 "onoff": onoffbool,
-                "dregree": tempdegree,
+                "degree": tempdegree,
                 "timestamp": self._hass.loop.time()
             }
         )

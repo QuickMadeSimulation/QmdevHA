@@ -78,7 +78,7 @@ class ZmqBridge:
         self._hass.bus.async_fire(
             "qmdevha_pack_event",
             {
-                "onoff": onoff,
+                "onoff": onoffbool,
                 "dregree": tempdegree,
                 "timestamp": self._hass.loop.time()
             }

@@ -57,7 +57,7 @@ jobs:
         run: |
           export config_path=./test_config
           mkdir $config_path
-          ./install.sh $config_path
+          bash ./install.sh $config_path
           echo "default_config:" >> $config_path/configuration.yaml
           echo "logger:" >> $config_path/configuration.yaml
           echo "  default: info" >> $config_path/configuration.yaml

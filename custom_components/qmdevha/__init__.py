@@ -27,6 +27,9 @@ from .const import (
     CONF_ZMQ_SUB_ENDPOINT,
 )
 
+# 公开 ZmqBridge 以便测试可通过 custom_components.qmdevha.ZmqBridge 进行打桩
+from .bridge import ZmqBridge  # noqa: F401
+
 PLATFORMS: list[str] = []
 
 _LOGGER = logging.getLogger(__name__)
@@ -60,13 +63,15 @@ async def async_setup_entry(hass: Any, entry: Any) -> bool:
 
 
 async def async_unload_entry(hass: Any, entry: Any) -> bool:
-    task: asyncio.Task | None = hass.data[DOMAIN].pop(entry.entry_id, None)
+    task: Any | None = hass.data[DOMAIN].pop(entry.entry_id, None)
     if task:
         task.cancel()
-        try:
-            await task
-        except asyncio.CancelledError:
-            pass
+        # 仅在其为 asyncio.Task 时等待，以兼容测试中的替身对象
+        if isinstance(task, asyncio.Task):
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
     return True
 
 

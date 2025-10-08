@@ -1,4 +1,4 @@
-"""测试ZMQ桥接功能"""
+"""测试ZMQ桥接功能（独立于 Home Assistant 环境）"""
 import pytest
 import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
@@ -12,21 +12,19 @@ def mock_bridge(mock_hass):
     """创建模拟的ZMQ桥接器"""
     return ZmqBridge(
         hass=mock_hass,
-        zmq_sub_endpoint="tcp://127.0.0.1:5556",
+        zmq_sub_endpoint="192.168.1.100",
     )
 
 
 @pytest.fixture
 def mock_hass():
-    """模拟Home Assistant实例"""
+    """模拟 Home Assistant 实例（最小接口）"""
     hass = MagicMock()
     hass.loop = MagicMock()
     hass.loop.time.return_value = 1000.0
     hass.bus = MagicMock()
     hass.bus.async_fire = AsyncMock()
     return hass
-
-
 
 
 @pytest.mark.asyncio
@@ -52,8 +50,8 @@ async def test_handle_key_event(mock_bridge):
 @pytest.mark.asyncio
 async def test_handle_pack_event(mock_bridge):
     """测试打包事件处理 - 触发事件"""
-    # 构造打包事件数据：onoff=True
-    payload = struct.pack("?", True)
+    # 构造打包事件数据：onoff=1, degree=26
+    payload = struct.pack("<ii", 1, 26)
     
     await mock_bridge._handle_pack_event(payload)
     
@@ -62,6 +60,7 @@ async def test_handle_pack_event(mock_bridge):
         "qmdevha_pack_event",
         {
             "onoff": True,
+            "degree": 26,
             "timestamp": 1000.0
         }
     )
@@ -82,7 +81,7 @@ async def test_handle_invalid_key_event(mock_bridge):
 @pytest.mark.asyncio
 async def test_handle_invalid_pack_event(mock_bridge):
     """测试无效打包事件处理"""
-    # 构造无效的打包事件数据（空数据）
+    # 构造无效的打包事件数据（长度不足）
     payload = b""
     
     await mock_bridge._handle_pack_event(payload)

@@ -1,26 +1,29 @@
-"""测试QmdevHA集成初始化"""
+"""测试QmdevHA集成初始化（独立于 Home Assistant 环境）"""
+import asyncio
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
-from homeassistant.core import HomeAssistant
-from homeassistant.config_entries import ConfigEntry
 
 from custom_components.qmdevha import async_setup_entry, async_unload_entry
 from custom_components.qmdevha.const import DOMAIN
 
 
+class MockConfigEntry:  # 轻量替代，避免依赖 HA 的 tests.common
+    def __init__(self, *, domain: str, title: str, data: dict, unique_id: str):
+        self.domain = domain
+        self.title = title
+        self.data = data
+        self.unique_id = unique_id
+        self.entry_id = unique_id
+
+
 @pytest.fixture
 def mock_config_entry():
     """模拟配置条目"""
-    from tests.common import MockConfigEntry
     return MockConfigEntry(
         domain=DOMAIN,
         title="QmdevHA",
         data={
-            "url": "http://localhost:8123",
-            "token": "test_token",
-            "light_entity_id": "light.test_light",
-            "ac_entity_id": "climate.test_ac",
-            "zmq_sub_endpoint": "tcp://127.0.0.1:5556",
+            "zmq_sub_endpoint": "192.168.1.100",
         },
         unique_id="qmdevha_test",
     )
@@ -28,7 +31,7 @@ def mock_config_entry():
 
 @pytest.fixture
 def mock_hass():
-    """模拟Home Assistant实例"""
+    """模拟Home Assistant实例（最小化接口）"""
     hass = MagicMock()
     hass.data = {}
     hass.loop = MagicMock()

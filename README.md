@@ -1,6 +1,6 @@
 ## QmdevHA (HACS Custom Integration) — Using Events
 
-QmdevHA exposes Home Assistant events from ZMQ messages. Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
+QmdevHA exposes Home Assistant events from Qmdev 7.1/QmdevSimConnect 5.1. Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
 
 ### Events
 
@@ -17,74 +17,90 @@ QmdevHA exposes Home Assistant events from ZMQ messages. Instead of directly con
 ### Example: Control a light on key release
 
 ```yaml
-# configuration.yaml
-automation:
-  - alias: "QmdevHA key controls light"
-    trigger:
-      - platform: event
-        event_type: qmdevha_key_event
-        event_data:
-          qid: 9
-          key: 19  # 0x13
-    condition:
+alias: QmdevHA DOME BRT
+description: ""
+triggers:
+  - event_type: qmdevha_key_event
+    event_data:
+      qid: 9
+      key: 18
+    trigger: event
+conditions: []
+actions:
+  - if:
       - condition: template
         value_template: "{{ trigger.event.data.isrelease }}"
-    action:
-      - service: light.turn_on
+    then:
+      - action: switch.turn_off
         target:
-          entity_id: light.living_room
+          entity_id: switch.zimi_cn_1021898767_dhkg01_on_p_2_1
+        data: {}
+    else:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.zimi_cn_1021898767_dhkg01_on_p_2_1
+```
+
+```yaml
+alias: QmdevHA DOME DIM
+description: ""
+triggers:
+  - event_type: qmdevha_key_event
+    event_data:
+      qid: 9
+      key: 19
+    trigger: event
+conditions: []
+actions:
+  - if:
+      - condition: template
+        value_template: "{{ trigger.event.data.isrelease }}"
+    then:
+      - action: switch.turn_on
+        metadata: {}
+        data: {}
+        target:
+          entity_id: switch.giot_cn_1163257474_v8icm_on_p_2_1
+    else:
+      - action: switch.turn_off
+        target:
+          entity_id: switch.giot_cn_1163257474_v8icm_on_p_2_1
+        data: {}
+
 ```
 
 ### Example: AC mode from pack event
 
 ```yaml
 # configuration.yaml
-automation:
-  - alias: "QmdevHA pack controls AC"
-    trigger:
-      - platform: event
-        event_type: qmdevha_pack_event
-    action:
-      - choose:
-          - conditions:
-              - condition: template
-                value_template: "{{ trigger.event.data.onoff }}"
-            sequence:
-              - service: climate.set_hvac_mode
-                target:
-                  entity_id: climate.living_room_ac
-                data:
-                  hvac_mode: cool
-          - conditions:
-              - condition: template
-                value_template: "{{ not trigger.event.data.onoff }}"
-            sequence:
-              - service: climate.set_hvac_mode
-                target:
-                  entity_id: climate.living_room_ac
-                data:
-                  hvac_mode: off
-```
+alias: QmdevHA pack controls AC
+description: ""
+triggers:
+  - event_type: qmdevha_pack_event
+    trigger: event
+conditions: []
+actions:
+  - if:
+      - condition: template
+        value_template: "{{ trigger.event.data.onoff }}"
+    then:
+      - sequence:
+          - service: climate.set_temperature
+            data:
+              temperature: |
+                {{ trigger.event.data.degree | float }}
+              hvac_mode: auto
+            target:
+              entity_id: climate.210006721135374_climate
+    else:
+      - sequence:
+          - service: climate.set_hvac_mode
+            entity_id: climate.210006721135374_climate
+            data:
+              hvac_mode: off
 
-### Example: Scene and notification
-
-```yaml
-# configuration.yaml
-automation:
-  - alias: "QmdevHA scene trigger"
-    trigger:
-      - platform: event
-        event_type: qmdevha_pack_event
-        event_data:
-          onoff: true
-    action:
-      - service: scene.turn_on
-        target:
-          entity_id: scene.movie_mode
-      - service: notify.mobile_app_your_phone
-        data:
-          title: "QmdevHA"
-          message: "Movie mode activated"
 ```
 
 ### Debugging

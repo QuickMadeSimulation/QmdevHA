@@ -5,7 +5,7 @@ QmdevHA exposes Home Assistant events from Qmdev 7.1/QmdevSimConnect 5.1. Instea
 ### Events
 
 - qmdevha_key_event
-  - qid: queue id (number)
+  - qid: quickmade device id (number)
   - key: key code (number, e.g., 0x13 = 19)
   - isrelease: whether the key is released (true/false)
   - timestamp: event timestamp (float)

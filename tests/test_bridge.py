@@ -4,6 +4,9 @@ import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 import struct
 
+# 使该文件在 `-m github` 过滤时被选择
+pytestmark = pytest.mark.github
+
 from custom_components.qmdevha.bridge import ZmqBridge
 
 

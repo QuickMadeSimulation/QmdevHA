@@ -3,6 +3,9 @@ import asyncio
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 
+# 使该文件在 `-m github` 过滤时被选择
+pytestmark = pytest.mark.github
+
 from custom_components.qmdevha import async_setup_entry, async_unload_entry
 from custom_components.qmdevha.const import DOMAIN
 

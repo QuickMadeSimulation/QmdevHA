@@ -45,46 +45,17 @@ def main():
                       "安装测试依赖"):
         sys.exit(1)
     
-    # 运行单元测试
-    test_commands = [
-        # 配置流程测试
-        ([sys.executable, "-m", "pytest", "tests/test_config_flow.py", "-v"], 
-         "配置流程测试"),
-        
-        # 桥接功能测试
-        ([sys.executable, "-m", "pytest", "tests/test_bridge.py", "-v"], 
-         "桥接功能测试"),
-        
-        # 初始化测试
-        ([sys.executable, "-m", "pytest", "tests/test_init.py", "-v"], 
-         "初始化测试"),
-        
-        # 集成测试
-        ([sys.executable, "-m", "pytest", "tests/test_integration.py", "-v"], 
-         "集成测试"),
-        
-        # 所有测试
-        ([sys.executable, "-m", "pytest", "tests/", "-v", "--cov=custom_components.qmdevha", 
-          "--cov-report=term-missing"], 
-         "完整测试套件（含覆盖率）"),
+    # 一次性运行所有测试并生成覆盖率报告
+    cmd = [
+        sys.executable, "-m", "pytest", "tests/", "-v",
+        "--cov=custom_components.qmdevha", "--cov-report=term-missing"
     ]
-    
-    success_count = 0
-    total_count = len(test_commands)
-    
-    for cmd, description in test_commands:
-        if run_command(cmd, description):
-            success_count += 1
+    ok = run_command(cmd, "运行全部测试与覆盖率")
     
     print(f"\n{'='*50}")
-    print(f"测试结果: {success_count}/{total_count} 通过")
+    print(f"测试结果: {'通过' if ok else '失败'}")
     
-    if success_count == total_count:
-        print("🎉 所有测试通过！")
-        sys.exit(0)
-    else:
-        print("❌ 部分测试失败")
-        sys.exit(1)
+    sys.exit(0 if ok else 1)
 
 
 if __name__ == "__main__":

@@ -60,7 +60,7 @@ git checkout v1.0.0
   - onoff: power state (true/false)
   - timestamp: event timestamp (float)
 
-### Example: Control a light on key release
+### Example: Control a light on key event
 
 ```yaml
 alias: QmdevHA DOME BRT
@@ -117,7 +117,7 @@ actions:
 
 ```
 
-### Example: AC mode from pack event
+### Example: AC mode from aircraft Pack event
 
 ```yaml
 # configuration.yaml

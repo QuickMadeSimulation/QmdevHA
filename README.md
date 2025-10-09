@@ -18,6 +18,14 @@ QmdevHA exposes Home Assistant events from Qmdev 7.1/QmdevSimConnect 5.1. Instea
 1. Copy the `custom_components/qmdevha` folder to your `custom_components` directory
 2. Restart Home Assistant
 
+### Method 2: [HACS](https://hacs.xyz/)
+
+One-click installation from HACS:
+
+[![Open your Home Assistant instance and open the QmdevHA integration inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=QuickMadeSimulation&repository=QmdevHA&category=integration)
+
+Or, HACS > In the search box, type **QmdevHA** > Click **QmdevHA**, getting into the detail page > DOWNLOAD
+
 ### Events
 
 - qmdevha_key_event

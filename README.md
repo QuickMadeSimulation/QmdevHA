@@ -1,30 +1,28 @@
 ## QmdevHA (HACS Custom Integration) — Using Events
 
-QmdevHA exposes Home Assistant events from Qmdev 7.1/QmdevSimConnect 5.1. Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
+QmdevHA exposes Home Assistant events from [QuickMadeSimulation Flight Simulation Hardware](https://x-plane.vip/quickmade/shop/), it requires:
+
+* Qmdev 7.1 or above, for X-Plane 11/12
+* QmdevSimConnect 5.1 or above, for MSFS 2020/2024
+
+Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
 
 ## Installation
 
-### Via HACS (Recommended)
-
-1. Open HACS in Home Assistant
-2. Go to "Integrations"
-3. Click the "+" button
-4. Search for "QmdevHA"
-5. Install the integration
-6. Restart Home Assistant
-
-### Manual Installation
-
-1. Copy the `custom_components/qmdevha` folder to your `custom_components` directory
-2. Restart Home Assistant
-
-### Method 2: [HACS](https://hacs.xyz/)
+### Via HACS (Recommended): [HACS](https://hacs.xyz/)
 
 One-click installation from HACS:
 
 [![Open your Home Assistant instance and open the QmdevHA integration inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=QuickMadeSimulation&repository=QmdevHA&category=integration)
 
 Or, HACS > In the search box, type **QmdevHA** > Click **QmdevHA**, getting into the detail page > DOWNLOAD
+
+
+### Manual Installation
+
+1. Copy the `custom_components/qmdevha` folder to your `custom_components` directory
+2. Restart Home Assistant
+
 
 ### Events
 

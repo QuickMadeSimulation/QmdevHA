@@ -48,7 +48,7 @@ git checkout v1.0.0
 ```
 
 
-### Events
+## Events (Home Assistant events)
 
 - qmdevha_key_event
   - qid: quickmade device id (number)

@@ -27,6 +27,26 @@ Or, HACS > In the search box, type **QmdevHA** > Click **QmdevHA**, getting into
 1. Copy the `custom_components/qmdevha` folder to your `custom_components` directory
 2. Restart Home Assistant
 
+### Developer Installation: Git clone from GitHub
+
+```bash
+cd config
+git clone https://github.com/QuickMadeSimulation/QmdevHA.git
+cd QmdevHA
+./install.sh /config
+```
+
+It is convenient to switch to a tag when updating `QmdevHA` to a certain version.
+
+For example, update to version v1.0.0
+
+```bash
+cd config/QmdevHA
+git fetch
+git checkout v1.0.0
+./install.sh /config
+```
+
 
 ### Events
 

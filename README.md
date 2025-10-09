@@ -2,6 +2,22 @@
 
 QmdevHA exposes Home Assistant events from Qmdev 7.1/QmdevSimConnect 5.1. Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
 
+## Installation
+
+### Via HACS (Recommended)
+
+1. Open HACS in Home Assistant
+2. Go to "Integrations"
+3. Click the "+" button
+4. Search for "QmdevHA"
+5. Install the integration
+6. Restart Home Assistant
+
+### Manual Installation
+
+1. Copy the `custom_components/qmdevha` folder to your `custom_components` directory
+2. Restart Home Assistant
+
 ### Events
 
 - qmdevha_key_event
@@ -103,37 +119,3 @@ actions:
 
 ```
 
-### Debugging
-
-Enable logs and inspect events in Developer Tools → Events.
-
-```yaml
-logger:
-  default: info
-  logs:
-    custom_components.qmdevha: debug
-```
-
-Optional: log every QmdevHA event to the system log.
-
-```yaml
-automation:
-  - alias: "Log QmdevHA events"
-    trigger:
-      - platform: event
-        event_type: qmdevha_key_event
-      - platform: event
-        event_type: qmdevha_pack_event
-    action:
-      - service: system_log.write
-        data:
-          level: info
-          message: "{{ trigger.event.event_type }}: {{ trigger.event.data }}"
-```
-
-### Best practices
-
-- Filter with event_data to match only what you need
-- Add safety conditions (entity availability, time, modes)
-- Avoid heavy work in automations; call services quickly
-- Log important actions for easier troubleshooting

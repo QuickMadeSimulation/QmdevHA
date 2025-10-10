@@ -1,3 +1,5 @@
+[![Validate](https://github.com/QuickMadeSimulation/QmdevHA/actions/workflows/validate.yaml/badge.svg)](https://github.com/QuickMadeSimulation/QmdevHA/actions/workflows/validate.yaml)
+
 ## QmdevHA (HACS Custom Integration) — Using Events
 
 QmdevHA exposes Home Assistant events from [QuickMadeSimulation Flight Simulation Hardware](https://x-plane.vip/quickmade/shop/), it requires:

@@ -4,8 +4,8 @@
 
 QmdevHA exposes Home Assistant events from [QuickMadeSimulation Flight Simulation Hardware](https://x-plane.vip/quickmade/shop/), it requires:
 
-* Qmdev 7.1 or above, for X-Plane 11/12
-* QmdevSimConnect 5.1 or above, for MSFS 2020/2024
+* [Qmdev](https://gitee.com/cpuwolf/qmdev) 7.1 or above, for X-Plane 11/12
+* [QmdevSimConnect](https://sourceforge.net/projects/qmdevsimconnect/) 5.1 or above, for MSFS 2020/2024
 
 Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
 

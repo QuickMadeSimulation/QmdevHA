@@ -10,8 +10,8 @@
    inkscape:version="1.4 (86a8ad7, 2024-10-11)"
    sodipodi:docname="qmdevha.svg"
    inkscape:export-filename="qmdevha.jpg"
-   inkscape:export-xdpi="96"
-   inkscape:export-ydpi="96"
+   inkscape:export-xdpi="153.60001"
+   inkscape:export-ydpi="153.60001"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -29,16 +29,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#000000"
      inkscape:document-units="px"
-     inkscape:zoom="2.093699"
-     inkscape:cx="285.85771"
-     inkscape:cy="170.75043"
+     inkscape:zoom="2.75"
+     inkscape:cx="286"
+     inkscape:cy="132.54545"
      inkscape:window-width="2560"
      inkscape:window-height="1351"
      inkscape:window-x="2391"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
-     inkscape:export-bgcolor="#000000ff" />
+     inkscape:export-bgcolor="#ffffffff" />
   <defs
      id="defs1">
     <marker
@@ -160,22 +160,22 @@
     <text
        xml:space="preserve"
        style="font-size:16.2064px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:start;letter-spacing:0.0520918px;word-spacing:0.868197px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:0.0868197;stroke-dasharray:none;stroke-opacity:1"
-       x="350.56116"
-       y="58.611263"
+       x="348.37933"
+       y="91.702171"
        id="text1-8-5"><tspan
          sodipodi:role="line"
          id="tspan1-8-1"
-         x="350.56116"
-         y="58.611263"
+         x="348.37933"
+         y="91.702171"
          style="stroke-width:0.0868197">qmdevsimconnect</tspan><tspan
          sodipodi:role="line"
-         x="350.56116"
-         y="78.86927"
+         x="348.37933"
+         y="111.96017"
          id="tspan4"
          style="stroke-width:0.0868197">MSFS2020/2024</tspan><tspan
          sodipodi:role="line"
-         x="350.56116"
-         y="99.127266"
+         x="348.37933"
+         y="132.21817"
          id="tspan3"
          style="stroke-width:0.0868197" /></text>
     <path
@@ -185,36 +185,36 @@
     <text
        xml:space="preserve"
        style="font-size:16.2064px;font-family:Calibri;-inkscape-font-specification:Calibri;text-align:start;letter-spacing:0.0520918px;word-spacing:0.868197px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:0.0868197;stroke-dasharray:none;stroke-opacity:1"
-       x="24.910263"
-       y="59.313919"
+       x="22.728445"
+       y="92.404831"
        id="text1-8"><tspan
          sodipodi:role="line"
          id="tspan1-8"
-         x="24.910263"
-         y="59.313919"
+         x="22.728445"
+         y="92.404831"
          style="stroke-width:0.0868197">qmdev</tspan><tspan
          sodipodi:role="line"
-         x="24.910263"
-         y="79.571922"
+         x="22.728445"
+         y="112.66283"
          id="tspan2"
          style="stroke-width:0.0868197">X-Plane 11/12</tspan></text>
     <path
        style="fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:2.84973;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-1)"
-       d="M 62.517026,81.663707 V 192.24918"
+       d="M 60.335208,114.75462 V 225.34009"
        id="path1-7" />
     <path
        style="fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:1.37913;stroke-dasharray:16.5496, 1.37913;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle-1-6)"
-       d="M 89.026393,131.82142 H 206.88123"
+       d="M 90.480938,158.73051 H 208.33578"
        id="path1-7-7"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:1.36976;stroke-dasharray:16.4372, 1.36976;stroke-dashoffset:0;stroke-opacity:1;marker-end:url(#Triangle-1-6-8)"
-       d="M 370.82522,131.23611 H 254.56563"
+       d="M 372.27977,158.1452 H 256.02018"
        id="path1-7-7-7"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:#48bccf;fill-opacity:0.828746;stroke:#9fe0e8;stroke-width:2.8124;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle-4)"
-       d="M 402.52193,83.245259 V 190.95255"
+       d="M 400.34011,116.33617 V 224.04346"
        id="path1-2" />
   </g>
   <metadata

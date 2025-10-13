@@ -9,6 +9,8 @@ QmdevHA exposes Home Assistant events from [QuickMadeSimulation Flight Simulatio
 
 Instead of directly controlling devices, you create automations that react to these events. This keeps logic in Home Assistant, making it flexible and extensible.
 
+![arch](img\qmdevha.jpg)
+
 ## Video Demo
 
 https://youtube.com/shorts/vNuspspNrWk?si=Gh9OoM24CEk18FPi

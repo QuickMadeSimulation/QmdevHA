@@ -13,7 +13,7 @@ Instead of directly controlling devices, you create automations that react to th
 
 ## Video Demo
 
-https://youtube.com/shorts/vNuspspNrWk?si=Gh9OoM24CEk18FPi
+https://youtube.com/shorts/HVaB6CtV3sc?si=r0Oy4HKc-RhFrgFt
 
 ## Installation
 

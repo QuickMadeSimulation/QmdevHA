@@ -11,9 +11,9 @@ Instead of directly controlling devices, you create automations that react to th
 
 ![arch](img/qmdevha.jpg)
 
-## Video Demo
+## Video Demo(how to install)
 
-https://youtube.com/shorts/HVaB6CtV3sc?si=r0Oy4HKc-RhFrgFt
+https://youtu.be/5mgTzvETtQw
 
 ## Installation
 

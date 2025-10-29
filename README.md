@@ -25,6 +25,11 @@ One-click installation from HACS:
 
 Or, HACS > In the search box, type **QmdevHA** > Click **QmdevHA**, getting into the detail page > DOWNLOAD
 
+## Configuration
+
+![config](img/qmdevha_cfg.jpg)
+
+you need the IP address of where X-Plane Qmdev Addon or MSFS QmdevSimConnect is running
 
 ### Manual Installation
 
